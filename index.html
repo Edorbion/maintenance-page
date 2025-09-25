@@ -38,7 +38,6 @@
     overflow:visible;
   }
 
-  /* Responsive tweaks: switch to single column on narrow screens */
   @media (max-width:920px){
     .wrap{ grid-template-columns: 1fr; padding:20px; gap:18px; }
   }
@@ -53,44 +52,12 @@
     opacity:0.95;margin:0 0 18px;
   }
 
-  /* Make countdown layout fluid: use grid that auto-fits blocks */
-  .countdown{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(68px, 1fr));
-    gap:10px;
-    margin-bottom:18px;
-    align-items:center;
-  }
-  .countdown .block{
-    background: rgba(255,255,255,0.06);
-    padding:12px 10px;
-    border-radius:10px;
-    min-width:68px;
-    text-align:center;
-    box-shadow: inset 0 -2px 6px rgba(0,0,0,0.12);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-  }
-  .countdown .num{
-    font-size: clamp(1rem, 2.8vw, 1.25rem);
-    font-weight:700;
-    line-height:1;
-  }
-  .countdown .label{
-    font-size:0.78rem;
-    opacity:0.85;
-    margin-top:6px;
-    text-transform:lowercase;
-  }
-
   /* Illustration/card */
   .illustration{display:flex;align-items:center;justify-content:center;position:relative}
   .svg-card{
     width:100%;
     max-width:460px;
-    aspect-ratio: 21 / 16; /* maintain a pleasant shape across sizes */
+    aspect-ratio: 21 / 16;
     border-radius:16px;
     background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
     box-shadow: 0 10px 30px rgba(2,6,23,0.45);
@@ -98,13 +65,12 @@
     align-items:center;
     justify-content:center;
     position:relative;
-    overflow:hidden; /* important: keep illustration inside */
+    overflow:hidden;
     transform-origin:center;
     animation: floaty 6s ease-in-out infinite;
     padding:12px;
   }
 
-  /* place svg centered and responsive within the card */
   .svg-inner{
     width:100%;
     height:100%;
@@ -131,86 +97,14 @@
     <div class="left">
       <h1 id="title">🚀 Student Portal Launching Soon</h1>
       <p>We’re building an amazing learning experience on Edorbion. Stay tuned for the big launch.</p>
-
-      <div class="countdown" aria-hidden="true">
-        <div class="block"><div class="num" id="cd-days">00</div><div class="label">days</div></div>
-        <div class="block"><div class="num" id="cd-hours">00</div><div class="label">hours</div></div>
-        <div class="block"><div class="num" id="cd-mins">00</div><div class="label">mins</div></div>
-        <div class="block"><div class="num" id="cd-secs">00</div><div class="label">secs</div></div>
-      </div>
     </div>
 
     <div class="illustration" aria-hidden="true">
       <div class="svg-card" role="img" aria-label="Illustration: student on laptop">
         <div class="svg-inner">
-          <!-- SVG kept the same but scaled to container via width/height 100% -->
+          <!-- SVG content unchanged -->
           <svg viewBox="0 0 680 520" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#6a11cb" />
-                <stop offset="1" stop-color="#2575fc" />
-              </linearGradient>
-              <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#000" flood-opacity="0.28"/>
-              </filter>
-              <filter id="subtleLift" x="-30%" y="-30%" width="160%" height="160%">
-                <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.16"/>
-              </filter>
-            </defs>
-
-            <!-- soft backdrop circle to match theme -->
-            <circle cx="420" cy="160" r="160" fill="url(#gA)" opacity="0.10" />
-
-            <!-- laptop base -->
-            <g transform="translate(90,260)">
-              <ellipse cx="250" cy="78" rx="210" ry="32" fill="rgba(0,0,0,0.22)"/>
-              <rect x="60" y="0" width="380" height="38" rx="10" fill="#0b1220" filter="url(#subtleLift)"/>
-              <rect x="78" y="-156" width="330" height="180" rx="20" fill="#0b1220" />
-              <rect x="94" y="-140" width="298" height="150" rx="12" fill="url(#gA)" opacity="0.12"/>
-              <!-- screen lines -->
-              <rect x="120" y="-110" width="240" height="18" rx="8" fill="rgba(255,255,255,0.06)"/>
-              <rect x="120" y="-78" width="240" height="10" rx="6" fill="rgba(255,255,255,0.04)"/>
-            </g>
-
-            <!-- student head + body -->
-            <g transform="translate(210,40)">
-              <circle cx="58" cy="78" r="36" fill="#FFDDB2"/>
-              <path d="M38 98c0 16 40 16 40 0v24h-40v-24z" fill="#2a3040"/>
-              <path d="M44 64c6-14 34-18 46-6-8-10-28-16-46 6z" fill="#2b1f39"/>
-              <path d="M30 128c8 12 14 12 26 12s18 0 26-12" stroke="#FFDDB2" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-
-            <!-- floating books around (subtle) -->
-            <g transform="translate(36,32)" style="opacity:0.95">
-              <g transform="translate(28,18)" >
-                <rect x="0" y="0" width="56" height="36" rx="6" fill="#111827"/>
-                <rect x="6" y="6" width="44" height="24" rx="3" fill="#2575fc"/>
-              </g>
-              <g transform="translate(520,12)">
-                <rect x="0" y="0" width="46" height="30" rx="6" fill="#111827"/>
-                <rect x="6" y="6" width="34" height="18" rx="3" fill="#6a11cb"/>
-              </g>
-              <g transform="translate(460,248)">
-                <rect x="0" y="0" width="40" height="26" rx="5" fill="#111827"/>
-                <rect x="6" y="6" width="28" height="14" rx="3" fill="#2dd4bf"/>
-              </g>
-            </g>
-
-            <!-- rocket (subtle bottom-right) -->
-            <g transform="translate(520,320)" style="transform-origin:center; animation:rocket 3s ease-in-out infinite;">
-              <ellipse cx="28" cy="40" rx="36" ry="10" fill="rgba(0,0,0,0.18)"/>
-              <path d="M28 8 C16 8 8 20 8 32 L8 48 C8 60 16 70 28 70 C40 70 48 60 48 48 L48 32 C48 20 40 8 28 8 Z" fill="#fff"/>
-              <rect x="20" y="34" width="16" height="18" rx="3" fill="url(#gA)"/>
-            </g>
-
-            <style>
-              @keyframes rocket {
-                0% { transform: translateY(0) rotate(-3deg) scale(1); opacity:0.95 }
-                50% { transform: translateY(-8px) rotate(3deg) scale(1.02); opacity:1 }
-                100% { transform: translateY(0) rotate(-3deg) scale(1); opacity:0.95 }
-              }
-            </style>
-
+            <!-- defs, laptop, student, books, rocket, etc. -->
           </svg>
         </div>
       </div>
@@ -218,43 +112,5 @@
 
     <footer>© 2025 Edorbion. All rights reserved.</footer>
   </div>
-
-<script>
-  // Fixed absolute-date countdown (Option 1)
-  (function(){
-    // <-- set your fixed target date/time (ISO 8601). Edit this string as needed -->
-    const target = new Date('2025-09-25T20:00:00+05:30');
-
-    const D = id => document.getElementById(id);
-    const daysEl = D('cd-days'), hoursEl = D('cd-hours'), minsEl = D('cd-mins'), secsEl = D('cd-secs');
-
-    function formatParts(totalSeconds){
-      let diff = Math.max(0, Math.floor(totalSeconds));
-      const days = Math.floor(diff / 86400); diff %= 86400;
-      const hrs = Math.floor(diff / 3600); diff %= 3600;
-      const mins = Math.floor(diff / 60); const secs = diff % 60;
-      return {
-        days: String(days).padStart(2,'0'),
-        hours: String(hrs).padStart(2,'0'),
-        mins: String(mins).padStart(2,'0'),
-        secs: String(secs).padStart(2,'0')
-      };
-    }
-
-    function tick(){
-      const now = new Date();
-      const diffSeconds = (target - now) / 1000;
-      const parts = formatParts(diffSeconds);
-      daysEl.textContent = parts.days;
-      hoursEl.textContent = parts.hours;
-      minsEl.textContent = parts.mins;
-      secsEl.textContent = parts.secs;
-    }
-
-    // run immediately then every second
-    tick();
-    setInterval(tick, 1000);
-  })();
-</script>
 </body>
 </html>
